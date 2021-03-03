@@ -1,0 +1,103 @@
+/*
+ * Device Tree overlay for sx1508 IO expander, jdi lt070me05000 panel, and goodix touchscreen.
+ * Compile: dtc -Wno-interrupts_property -@ -I dts -O dtb -o cm4-dsi-lt070me05000.dtbo cm4-dsi-lt070me05000-overlay.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+    fragment@0 {
+        target = <&i2c0>;
+        __overlay__{
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            ioexp: ioexp@20 {
+                #gpio-cells = <2>;
+                compatible = "microchip,mcp23008";
+                reg = <0x20>;
+                gpio-controller;
+                status     = "okay";
+
+                pinctrl-names = "default";
+                pinctrl-0 = <&jdi_panel_pins
+                            &goodix_pins>;
+
+                jdi_panel_pins: jdi_panel-cfg {
+                    brcm,pins = <3 4 5>;
+                    brcm,function = <0 0 0>;
+                };
+
+                goodix_pins: goodix_pins {
+                    brcm,pins = <1 0>; // interrupt and reset
+                    brcm,function = <0 0>; // in
+                    brcm,pull = <2 2>; // pull-up
+                };
+            };
+
+            gt911: gt911@14 {
+                compatible = "goodix,gt911";
+                reg = <0x14>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&goodix_pins>;
+                interrupt-parent = <&ioexp>;
+                interrupts = <1 2>; // high-to-low edge triggered
+                irq-gpios = <&ioexp 1 0>;
+                reset-gpios = <&ioexp 0 0>;
+                status        = "okay";
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&ioexp>;
+        ioexp_irq: __overlay__ {
+            #interrupt-cells=<2>;
+            interrupt-parent = <&gpio>;
+            interrupts = <16 2>;
+            interrupt-controller;
+        };
+    };
+
+    fragment@2 {
+        target = <&dsi1>;
+        __overlay__{
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+            port {
+                dsi_out_port:endpoint {
+                    remote-endpoint = <&panel_dsi_port>;
+                };
+            };
+
+            lt070me05000:lt070me05000@0 {
+                compatible    = "jdi,lt070me05000";
+                status        = "okay";
+                reg           = <0>;
+                vc4_dsi       = <&dsi1>;
+
+                pinctrl-names = "default";
+                pinctrl-0 = <&jdi_panel_pins>;
+                reset-gpios   = <&ioexp 3 1>;
+                enable-gpios  = <&ioexp 4 0>;
+                dcdc-en-gpios = <&ioexp 5 0>;
+                port {
+                    panel_dsi_port: endpoint {
+                        remote-endpoint = <&dsi_out_port>;
+                    };
+                };
+            };
+        };
+    };
+
+    fragment@3 {
+        target = <&i2c0mux>;
+        __overlay__ {
+            pinctrl-0 = <&i2c0_gpio44>;
+        };
+    };
+};

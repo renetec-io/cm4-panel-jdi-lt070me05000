@@ -1,0 +1,9 @@
+#!/bin/sh
+
+dtc -Wno-interrupts_property -@ -I dts -O dtb -o cm4-dsi-lt070me05000.dtbo cm4-dsi-lt070me05000-overlay.dts
+
+install -m 751 cm4-dsi-lt070me05000.dtbo /boot/overlays/
+
+# Install sound configuration
+install -m 644 asound.conf /etc/
+
