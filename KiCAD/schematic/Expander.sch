@@ -1,0 +1,193 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 8 8
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:C C28
+U 1 1 6015D329
+P 4150 4350
+F 0 "C28" V 4205 4521 50  0000 L CNN
+F 1 "0.1uF 6V3" V 4205 3812 50  0000 L CNN
+F 2 "footprintlib:C_0603_1608Metric" H 4188 4200 50  0001 C CNN
+F 3 "~" H 4150 4350 50  0001 C CNN
+	1    4150 4350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R15
+U 1 1 601676BE
+P 4700 3950
+F 0 "R15" V 4770 3996 50  0000 L CNN
+F 1 "10k 5%" V 4600 3800 50  0000 L CNN
+F 2 "footprintlib:R_0603_1608Metric" V 4630 3950 50  0001 C CNN
+F 3 "~" H 4700 3950 50  0001 C CNN
+	1    4700 3950
+	0    -1   -1   0   
+$EndComp
+Text HLabel 7300 3450 2    50   Input ~ 0
+EXP_INT
+Text HLabel 4800 3550 0    50   Input ~ 0
+SDA
+Text HLabel 4800 3450 0    50   Input ~ 0
+SCL
+Text HLabel 7300 4250 2    50   Input ~ 0
+EXP_P0
+Text HLabel 7300 4150 2    50   Input ~ 0
+EXP_P1
+Text HLabel 7300 4050 2    50   Input ~ 0
+EXP_P2
+Text HLabel 7300 3950 2    50   Input ~ 0
+EXP_P3
+Text HLabel 7300 3850 2    50   Input ~ 0
+EXP_P4
+Text HLabel 7300 3750 2    50   Input ~ 0
+EXP_P5
+Text HLabel 7300 3650 2    50   Input ~ 0
+EXP_P6
+Text HLabel 7300 3550 2    50   Input ~ 0
+EXP_P7
+NoConn ~ 5450 4750
+$Comp
+L power:GND #PWR072
+U 1 1 6012E7BC
+P 3850 4950
+F 0 "#PWR072" H 3850 4700 50  0001 C CNN
+F 1 "GND" H 3855 4777 50  0000 C CNN
+F 2 "" H 3850 4950 50  0001 C CNN
+F 3 "" H 3850 4950 50  0001 C CNN
+	1    3850 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR074
+U 1 1 60136D3F
+P 6900 2950
+F 0 "#PWR074" H 6900 2800 50  0001 C CNN
+F 1 "+3V3" H 6915 3123 50  0000 C CNN
+F 2 "" H 6900 2950 50  0001 C CNN
+F 3 "" H 6900 2950 50  0001 C CNN
+	1    6900 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCP23008T-E_SS:MCP23008T-E_SS U5
+U 1 1 601DEBF4
+P 5950 3850
+F 0 "U5" H 5950 4620 50  0000 C CNN
+F 1 "MCP23008T-E_SS" H 5950 4529 50  0000 C CNN
+F 2 "footprintlib:SOP65P780X200-20N" H 5950 3850 50  0001 L BNN
+F 3 "" H 5950 3850 50  0001 L BNN
+F 4 "SSOP-20" H 5950 3850 50  0001 L BNN "PACKAGE"
+F 5 "08J8739" H 5950 3850 50  0001 L BNN "OC_NEWARK"
+F 6 "MCP23008T-E/SS" H 5950 3850 50  0001 L BNN "MPN"
+F 7 "1605564" H 5950 3850 50  0001 L BNN "OC_FARNELL"
+F 8 "Microchip" H 5950 3850 50  0001 L BNN "SUPPLIER"
+	1    5950 3850
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6650 4550
+NoConn ~ 6650 4450
+NoConn ~ 6650 4350
+Wire Wire Line
+	5250 3450 4800 3450
+Wire Wire Line
+	5250 3550 4800 3550
+Wire Wire Line
+	6650 4250 7300 4250
+Wire Wire Line
+	6650 4150 7300 4150
+Wire Wire Line
+	6650 4050 7300 4050
+Wire Wire Line
+	6650 3950 7300 3950
+Wire Wire Line
+	6650 3850 7300 3850
+Wire Wire Line
+	6650 3750 7300 3750
+Wire Wire Line
+	6650 3650 7300 3650
+Wire Wire Line
+	6650 3550 7300 3550
+Wire Wire Line
+	6650 3450 6900 3450
+$Comp
+L Device:R R16
+U 1 1 601E5663
+P 6900 3100
+F 0 "R16" V 6970 3146 50  0000 L CNN
+F 1 "10k 5%" V 6800 2900 50  0000 L CNN
+F 2 "footprintlib:R_0603_1608Metric" V 6830 3100 50  0001 C CNN
+F 3 "~" H 6900 3100 50  0001 C CNN
+	1    6900 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 3250 6900 3450
+Connection ~ 6900 3450
+Wire Wire Line
+	6900 3450 7300 3450
+Wire Wire Line
+	5250 3650 3850 3650
+Wire Wire Line
+	5250 4450 3850 4450
+Wire Wire Line
+	3850 3650 3850 3750
+Connection ~ 3850 4450
+Wire Wire Line
+	3850 4450 3850 4950
+Wire Wire Line
+	5250 4350 4800 4350
+Connection ~ 3850 4350
+Wire Wire Line
+	3850 4350 3850 4450
+Wire Wire Line
+	4000 4350 3850 4350
+Wire Wire Line
+	5250 3750 3850 3750
+Connection ~ 3850 3750
+Wire Wire Line
+	5250 3850 3850 3850
+Wire Wire Line
+	3850 3750 3850 3850
+Connection ~ 3850 3850
+Wire Wire Line
+	3850 3850 3850 4350
+Wire Wire Line
+	4800 4350 4800 4150
+Wire Wire Line
+	4800 4150 4400 4150
+Connection ~ 4800 4350
+Wire Wire Line
+	4800 4350 4300 4350
+$Comp
+L power:+3V3 #PWR073
+U 1 1 601ED92E
+P 4300 4150
+F 0 "#PWR073" H 4300 4000 50  0001 C CNN
+F 1 "+3V3" H 4315 4323 50  0000 C CNN
+F 2 "" H 4300 4150 50  0001 C CNN
+F 3 "" H 4300 4150 50  0001 C CNN
+	1    4300 4150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4850 3950 5250 3950
+Wire Wire Line
+	4550 3950 4400 3950
+Wire Wire Line
+	4400 3950 4400 4150
+Connection ~ 4400 4150
+Wire Wire Line
+	4400 4150 4300 4150
+$EndSCHEMATC

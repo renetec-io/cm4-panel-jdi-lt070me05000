@@ -9,6 +9,8 @@ The display used is JDI LT070ME05000 with Goodix touch input driver IC. The proj
 Raspberry Pi only supports its official 7-inch MIPI DSI display with FKMS(Fake/Firmware KMS) out of the box. 
 To make the display work, we need to use full KMS and Linux kernel driver for the panel.
 
+The PCB design is contained in the KiCAD directory.
+
 Setup
 ======
 
